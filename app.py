@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, jsonify
 
-from stock_scraper import get_data
+from stock_scraper import get_stock_data
 
 app = Flask(__name__)
 
@@ -12,9 +12,11 @@ def index():
 
 @app.route("/data", methods=['GET'])
 def data():
-    get_data()
+    stock_data = get_stock_data()
+    print "STOCK DATA:", stock_data
     # return jsonify(get_data())
-    return "LOL"
+    # return "FUCK YOU"
+    return jsonify(data=stock_data)
 
 
 if __name__ == "__main__":
